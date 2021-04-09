@@ -1,0 +1,29 @@
+#define ROWS 16
+#define COLS 57
+void collide(int, int);
+char beginKeyReading();
+void clearScreen();
+void printTower();
+void printArray(char lines[ROWS][COLS]);
+int loop;
+extern int c;
+extern int pos;
+extern int playerPosition;
+/*char tower[ROWS][COLS]={
+     "          ____________________________________________ ",
+     "                                                     | ",
+     "                                                     | ",
+     "                                                     | ",
+     "                                                     | ",
+     "                                                     | ",
+     "                                                     | ",
+     "                                                     | ",
+     "                                                     | ",
+     "                                                     | ",
+     "                                                     | ",
+     "                                                     | ",
+     "                                                     | ",
+     "                                                     | ",
+     "          ___________________________________________| "};
+
+*/
