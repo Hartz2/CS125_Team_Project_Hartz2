@@ -154,8 +154,10 @@ void printTower(){
     
     if (bk==1){
 	printf("You Win!\n");
+	printf("Enemy ships destroyed: %d\n", points);
     } else{
 	printf("You Failed!\n");
+	printf("Enemy ships destroyed: %d\n", points);
     } 
         
     
