@@ -130,8 +130,7 @@ void printTower(){
 	   projectileX=projectileX-1;
 	}
 	shooting=0;
-	if ((projectileX==enemyX)&&(projectileY==position)){
-	   projectileX=enemyX;
+	if (((projectileX==enemyX)||(projectileX==enemyX-1))&&(projectileY==position)){	   
 	   points+=1;
 	   sprintf(str, "%d", ID+1);
 	   fire=strcpy(str, chart);
