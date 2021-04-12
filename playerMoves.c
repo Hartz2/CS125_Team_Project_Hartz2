@@ -5,7 +5,7 @@
 int ID=1;
 
 void printMove(char c){        
-   if (c=='s'||c=='w'){
+   if (c=='s'||c=='w'||c=='f'){
    FILE * f1=fopen("moves.txt", "w");
    fprintf(f1, "%c%d", c, ID);
    ID+=1;

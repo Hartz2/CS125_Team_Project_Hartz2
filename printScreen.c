@@ -1,11 +1,19 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <string.h>
 #include <time.h>
 #include "functionList.h"
-
-int position=3;
+//int position=3;
 int playerPosition=8;
+int projectileY=8;
+int projectileX=COLS-5;
+int spd=200000;
+int points=0;
+char fire='t';
+char chart[5];
+char str[5];
+int bk=0;
 
 void print_array(char lines[ROWS][COLS]){
 srand(time(NULL));
@@ -31,6 +39,12 @@ int findPlayerPos()
 	else if ((move=='s')&&(playerPosition<ROWS)){
 		playerPosition=playerPosition+1;
 	}
+        else if (move=='f')
+	{
+		fire='f';		
+		projectileY=playerPosition;
+		projectileX=52;
+	}
 	b=a;
    }
    fclose(f1);
@@ -39,12 +53,30 @@ int findPlayerPos()
 
 void clearScreen(){
 //    sleep(3);
-    usleep(1*200000);
+    if ((points>=2)&&(points<4)){
+	spd=100000;
+    }
+    if ((points>=4)&&(points<6)){
+	spd=75000;
+    }
+    if ((points>=6)&&(points<8)){
+	spd=50000;
+    }        
+    if ((points>=8)&&(points<10)){
+	spd=40000;
+    }
+    usleep(1*spd);
     printf("\e[2J\e[H");
 }
 
 void printTower(){
+    chart[1]='t';
+    fire='t';
+    srand(time(NULL));
+    int position=rand()%11+4;
     int loop;
+    projectileX=COLS-5;
+    int shooting;
     char tower[ROWS][COLS]={
      "          ____________________________________________ ",
      "                                                     | ",
@@ -67,17 +99,48 @@ void printTower(){
     tower[playerPosition][COLS-5]='@';
     print_array(tower); */
     char read;
-
-    for(enemyX=1; enemyX<(COLS-2); enemyX+=1){	
+    
+    for(enemyX=1; enemyX<(COLS-2); enemyX+=1){		
+	if (enemyX==56){
+	   bk=1;
+ 	   break;	   
+	}	
+	if (bk==1){
+	   break;
+	}
         clearScreen();	
 //	playerPosition=rand()%15+1;
-	playerPosition=findPlayerPos();
+	playerPosition=findPlayerPos();        
 	tower[playerPosition][COLS-5]='@';		
-        tower[position][enemyX]='*';	
+        tower[position][enemyX]='*';	        
+	if (fire=='f'){
+	   shooting=1;
+	}
+	if ((fire=='f')&&(shooting==1)){           	   
+	   tower[projectileY][projectileX]=':';	   	   
+	}
         print_array(tower);
 ///////////////////[NEXT ITERATION]//////////////////////		
+	if ((fire=='f')&&(shooting==1)){
+	tower[projectileY][projectileX]=' ';	
+	}
 	tower[playerPosition][COLS-5]=' ';
-        tower[position][enemyX]=' ';
+        tower[position][enemyX]=' ';	
+	if ((fire=='f')&&(shooting==1)){
+	   projectileX=projectileX-1;
+	}
+	shooting=0;
+	if ((projectileX==enemyX)&&(projectileY==position)){
+	   projectileX=enemyX;
+	   points+=1;
+	   sprintf(str, "%d", ID+1);
+	   fire=strcpy(str, chart);
+	   projectileX=52;
+	   if (bk==1){
+		break;
+	   }
+	   printTower();	   	   
+	}	
     }
     
         
@@ -86,5 +149,6 @@ void printTower(){
         printf("%s\n", tower[loop]);
     
     }
+    fire='t';
      printf("\n");     
 }
