@@ -15,6 +15,7 @@ char chart[5];
 char str[5];
 int bk=0;
 
+
 void print_array(char lines[ROWS][COLS]){
 srand(time(NULL));
 int x;
@@ -62,8 +63,11 @@ void clearScreen(){
     if ((points>=6)&&(points<8)){
 	spd=50000;
     }        
-    if ((points>=8)&&(points<10)){
+    if ((points>=8)&&(points<12)){
 	spd=40000;
+    }
+    if ((points==12)){	
+	bk=1;
     }
     usleep(1*spd);
     printf("\e[2J\e[H");
@@ -73,7 +77,7 @@ void printTower(){
     chart[1]='t';
     fire='t';
     srand(time(NULL));
-    int position=rand()%11+4;
+    int position=rand()%10+2;
     int loop;
     projectileX=COLS-5;
     int shooting;
@@ -101,15 +105,15 @@ void printTower(){
     char read;
     
     for(enemyX=1; enemyX<(COLS-2); enemyX+=1){		
+    if (bk==0){
 	if (enemyX==56){
-	   bk=1;
+	   bk=1;	   
  	   break;	   
 	}	
 	if (bk==1){
 	   break;
 	}
-        clearScreen();	
-//	playerPosition=rand()%15+1;
+        clearScreen();		
 	playerPosition=findPlayerPos();        
 	tower[playerPosition][COLS-5]='@';		
         tower[position][enemyX]='*';	        
@@ -138,10 +142,21 @@ void printTower(){
 	   if (bk==1){
 		break;
 	   }
-	   printTower();	   	   
+	   if (wreckage=='y'){
+	      tower[position-1][enemyX]='`';
+	      tower[position+1][enemyX]='.';
+	   }
+	   enemyX=1;
+	   position=rand()%10+2;
 	}	
     }
+    }
     
+    if (bk==1){
+	printf("You Win!\n");
+    } else{
+	printf("You Failed!\n");
+    } 
         
     
     for(loop=0; loop<15; loop++){

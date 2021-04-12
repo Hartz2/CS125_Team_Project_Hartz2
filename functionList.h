@@ -4,6 +4,7 @@ void collide(int, int);
 char beginKeyReading();
 void clearScreen();
 void printTower();
+char wreckage;
 void printArray(char lines[ROWS][COLS]);
 int loop;
 int spd;
