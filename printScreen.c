@@ -15,14 +15,12 @@ char fire='t';
 char chart[5];
 char str[5];
 
-
-
 void print_array(char lines[ROWS][COLS]){
 srand(time(NULL));
 int x;
- for (x=0; x< ROWS; x++){
-    printf("%s\n", lines[x]);
- }
+	for (x=0; x< ROWS; x++){
+		printf("%s\n", lines[x]);
+ 	}
 }
 
 int b=0;
