@@ -18,7 +18,6 @@ void printMove(char c){
 
 int main(){
    char v; 
-   //scanf("%c", &v);
       
    while (v!='o'){      
          scanf("%c", &v);
