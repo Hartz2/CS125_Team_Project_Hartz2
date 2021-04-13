@@ -4,7 +4,6 @@
 #include <string.h>
 #include <time.h>
 #include "functionList.h"
-//int position=3;
 int playerPosition=8;
 int projectileY=8;
 int projectileX=COLS-5;
@@ -53,7 +52,6 @@ int findPlayerPos()
 }
 
 void clearScreen(){
-//    sleep(3);
     if ((points>=2)&&(points<4)){
 	spd=100000;
     }
@@ -99,10 +97,6 @@ void printTower(){
      "          ___________________________________________| "};
     
     int enemyX;    
-/*    clearScreen();        
-    tower[playerPosition][COLS-5]='@';
-    print_array(tower); */
-    char read;
     
     for(enemyX=1; enemyX<(COLS-2); enemyX+=1){		
     if (bk==0){
