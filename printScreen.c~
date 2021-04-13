@@ -4,14 +4,14 @@
 //#define ROWS 16
 //#define COLS 57
 //#define POS 3
+
 #include "functionList.h"
 
 void print_array(char lines[ROWS][COLS]){
-   
 int x;
- for (x=0; x< ROWS; x++){
-    printf("%s\n", lines[x]);
- }
+   for (x=0; x< ROWS; x++){
+      printf("%s\n", lines[x]);
+   }
 }
 
 void clearScreen(){
