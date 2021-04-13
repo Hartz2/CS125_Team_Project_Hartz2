@@ -4,15 +4,17 @@
 #include <string.h>
 #include <time.h>
 #include "functionList.h"
+
 int playerPosition=8;
 int projectileY=8;
 int projectileX=COLS-5;
 int spd=200000;
 int points=0;
+int bk=0;
 char fire='t';
 char chart[5];
 char str[5];
-int bk=0;
+
 
 
 void print_array(char lines[ROWS][COLS]){
