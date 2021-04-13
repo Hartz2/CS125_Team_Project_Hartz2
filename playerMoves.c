@@ -14,8 +14,6 @@ void printMove(char c){
    }
 }
 
-
-
 int main(){
    char v; 
       
